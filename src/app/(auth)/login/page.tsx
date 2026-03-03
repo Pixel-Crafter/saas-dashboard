@@ -1,87 +1,189 @@
 "use client"
 
-import { ThemeToggle } from "@/components/theme-toggle";
-import { useAuthStore } from "@/store/use-auth-store";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import Link from "next/link"
 
 export default function LoginPage() {
-    const router = useRouter()
-    const { login } = useAuthStore()
-
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false)
-
-    const validate = () => {
-        if (!email) return "Email is required"
-        if (!/\S+@\S+\.\S+/.test(email)) return "Invalid email format"
-        if (!password) return "Password is required"
-        if (password.length < 6) return "Password must be at least 6 characters"
-        return ""
-    }
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-
-        const validationError = validate()
-        if (validationError) {
-            setError(validationError)
-            return
-        }
-
-        setError("")
-        setLoading(true)
-
-        setTimeout(() => {
-            login()
-            router.replace("/dashboard")
-        }, 1000)
-    }
-    
     return (
-        <main className="min-h-screen flex items-center justify-center relative">
-            <div className="absolute top-4 right-4">
-                <ThemeToggle />
-            </div>
+        <div
+            className="relative min-h-screen text-white overflow-hidden"
+            style={{
+                background: `
+                    radial-gradient(at 80% 20%, rgba(0, 255, 200, 0.35) 0px, transparent 50%),
+                    radial-gradient(at 85% 85%, rgba(255, 120, 0, 0.45) 0px, transparent 55%),
+                    linear-gradient(135deg, #08141a 0%, #0b1e24 40%, #091a1f 70%, #0a1318 100%)
+                `
+            }}
+        >
+            {/* CONTENT WRAPPER */}
+            <div className="relative z-10 flex items-center justify-between px-24 min-h-screen">
 
-            <div className="w-[350px] p-6 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-sm bg-white dark:bg-neutral-900">
-                <h1 className="text-xl font-semibold mb-4">
-                    Login
-                </h1>
+                {/* LEFT SECTION */}
+                <div className="max-w-xl space-y-10">
 
-                <form className="flex flex-col gap-3">
-                    <input 
-                        type="email" 
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="border p-2 rounded-md bg-transparent"
-                    />
-                    <input 
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="border p-2 rounded-md bg-transparent"
-                    />
+                    {/* Logo */}
+                    <div className="flex items-center gap-2 text-lg font-semibold">
+                        <div className="w-3 h-3 bg-teal-400 rounded-full" />
+                        aps
+                    </div>
 
-                    {error && (
-                        <p className="text-sm text-red-600">
-                            {error}
+                    {/* Hero */}
+                    <h1 className="text-[52px] font-bold leading-[1.1]">
+                        Expert level Cybersecurity
+                        <br />
+                        in <span className="text-teal-400">hours</span> not weeks.
+                    </h1>
+
+                    {/* What's Included */}
+                    <div className="space-y-4 text-[15px] text-neutral-300">
+                        <p className="text-white font-semibold">
+                            What’s included
                         </p>
-                    )}
 
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="bg-black text-white dark:bg-white dark:text-black py-2 rounded-md disabled:opacity-60 disabled:cursor-not-allowed transition"
-                    >
-                        {loading ? "Signing in..." : "Sign In"}
-                    </button>
-                </form>
+                        <ul className="space-y-3">
+                            <li className="flex gap-2">
+                                <span className="text-teal-400">✓</span>
+                                Effortlessly spider and map targets to uncover hidden security flaws
+                            </li>
+                            <li className="flex gap-2">
+                                <span className="text-teal-400">✓</span>
+                                Deliver high-quality, validated findings in hours, not weeks.
+                            </li>
+                            <li className="flex gap-2">
+                                <span className="text-teal-400">✓</span>
+                                Generate professional, enterprise-grade security reports automatically.
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Trustpilot */}
+                    <div className="pt-6">
+                        <p className="flex items-center gap-2 text-sm">
+                            <span className="text-teal-400">★</span>
+                            <span className="text-white font-semibold">Trustpilot</span>
+                        </p>
+
+                        <p className="text-neutral-300 text-sm">
+                            Rated 4.5/5.0{" "}
+                            <span className="text-neutral-400 text-xs">
+                                (100k+ reviews)
+                            </span>
+                        </p>
+                    </div>
+
+                </div>
+
+                {/* RIGHT CARD */}
+                <div className="w-full max-w-md bg-white rounded-3xl shadow-[0_40px_100px_rgba(0,0,0,0.45)] p-12 space-y-4 text-black">
+
+                    {/* Heading */}
+                    <div className="text-center space-y-2">
+                        <h2 className="text-2xl font-semibold">
+                            Sign up
+                        </h2>
+                        <p className="text-sm text-neutral-500">
+                            Already have an account?{" "}
+                            <Link
+                                href="#"
+                                className="text-teal-500 font-medium hover:underline"
+                            >
+                                Log in
+                            </Link>
+                        </p>
+                    </div>
+
+                    {/* Form */}
+                    <form className="space-y-4">
+
+                        <input
+                            type="text"
+                            placeholder="First name*"
+                            className="w-full border border-neutral-300 rounded-xl px-4 py-3 bg-neutral-50 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                        />
+
+                        <input
+                            type="text"
+                            placeholder="Last name*"
+                            className="w-full border border-neutral-300 rounded-xl px-4 py-3 bg-neutral-50 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                        />
+
+                        <input
+                            type="email"
+                            placeholder="Email address*"
+                            className="w-full border border-neutral-300 rounded-xl px-4 py-3 bg-neutral-50 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                        />
+
+                        <input
+                            type="password"
+                            placeholder="Password (8+ characters)*"
+                            className="w-full border border-neutral-300 rounded-xl px-4 py-3 bg-neutral-50 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-teal-400"
+                        />
+
+                        {/* Checkbox */}
+                        <label className="flex items-start gap-3 text-sm text-neutral-600 leading-relaxed">
+                            <input
+                                type="checkbox"
+                                className="mt-1 w-4 h-4 accent-teal-500 border-neutral-400"
+                            />
+                            <span>
+                                I agree to Aps's{" "}
+                                <Link
+                                    href="/terms"
+                                    className="text-teal-500 font-medium hover:underline"
+                                >
+                                    Terms & Conditions
+                                </Link>{" "}
+                                and acknowledge the{" "}
+                                <Link
+                                    href="/privacy"
+                                    className="text-teal-500 font-medium hover:underline"
+                                >
+                                    Privacy Policy
+                                </Link>
+                            </span>
+                        </label>
+
+                        {/* Button */}
+                        <button
+                            type="submit"
+                            className="w-full bg-teal-500 hover:bg-teal-600 text-white py-3.5 rounded-full font-semibold text-sm transition"
+                        >
+                            Create Account
+                        </button>
+
+                    </form>
+
+                    {/* Social Logos */}
+                    <div className="flex justify-center gap-3">
+
+                        <button className="w-30 h-14 flex items-center justify-center rounded-full bg-black shadow-md hover:scale-105 transition">
+                            <img
+                                src="/icons/apple.svg"
+                                alt="Apple"
+                                className="w-5 h-5"
+                            />
+                        </button>
+
+                        <button className="w-30 h-14 flex items-center justify-center rounded-full bg-[#f2f2f2] shadow-md hover:scale-105 transition">
+                            <img
+                                src="/icons/google.svg"
+                                alt="Google"
+                                className="w-5 h-5"
+                            />
+                        </button>
+
+                        <button className="w-30 h-14 flex items-center justify-center rounded-full bg-[#2F80ED] shadow-md hover:scale-105 transition">
+                            <img
+                                src="/icons/meta.svg"
+                                alt="Meta"
+                                className="w-6 h-6"
+                            />
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
-        </main>
+        </div>
     )
 }
