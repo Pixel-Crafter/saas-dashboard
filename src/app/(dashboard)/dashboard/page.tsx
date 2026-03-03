@@ -1,3 +1,4 @@
+import { RevenueChart } from "@/components/ui/revenue-chart";
 import { StatCard } from "@/components/ui/stat-card";
 import { statsData } from "@/lib/mock-data";
 
@@ -21,6 +22,8 @@ export default function DashboardPage() {
                     )
                 })}
             </div>
+
+            <RevenueChart />
         </div>
     )
 }
