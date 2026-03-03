@@ -41,7 +41,7 @@ export default function ScanDetailPage() {
             </div>
 
             {/* Progress Card */}
-            <div className="rounded-xl bg-white dark:bg-[#111E2C] border border-neutral-200 dark:border-white/8 p-6">
+            <div className="rounded-xl bg-white dark:bg-[#111E2C] border border-neutral-200 dark:border-white/8">
 
                 <div className="flex items-center gap-12">
 

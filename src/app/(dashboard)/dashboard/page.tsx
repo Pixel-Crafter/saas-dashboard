@@ -6,6 +6,7 @@ import { ScanTable } from "@/components/dashboard/scan-table"
 export default function DashboardPage() {
     return (
         <div className="space-y-6">
+            <div className="p-4 bg-white dark:bg-red-500">Test</div>
 
             {/* Breadcrumb + Actions */}
             <div className="flex items-center justify-between">
