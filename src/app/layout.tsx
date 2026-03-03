@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className="bg-white dark:bg-black text-black dark:text-white"
+        className="bg-white text-black dark:bg-neutral-950 dark:text-white transition-colors duration-200"
       >
         <ThemeProvider>
           {children}

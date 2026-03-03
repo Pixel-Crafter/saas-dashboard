@@ -3,11 +3,16 @@ import { ThemeToggle } from "@/components/theme-toggle";
 export default function LoginPage() {
     return (
         <main className="min-h-screen flex items-center justify-center relative">
+
+            <h1 className="text-red-500 text-4xl absolute top-20">
+                Tailwind Test
+            </h1>
+
             <div className="absolute top-4 right-4">
                 <ThemeToggle />
             </div>
 
-            <div className="w-[350px] p-6 border rounded-xl shadow-sm bg-white dark:bg-neutral-900">
+            <div className="w-[350px] p-6 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-sm bg-white dark:bg-neutral-900">
                 <h1 className="text-xl font-semibold mb-4">
                     Login
                 </h1>
