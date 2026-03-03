@@ -1,8 +1,24 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 export default function LoginPage() {
+
+    const router = useRouter()
+    const [loading, setLoading] = useState(false)
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+
+        setLoading(true)
+
+        setTimeout(() => {
+            router.push("/dashboard")
+        }, 800)
+    }
+
     return (
         <div
             className="relative min-h-screen text-white overflow-hidden"
@@ -92,7 +108,7 @@ export default function LoginPage() {
                     </div>
 
                     {/* Form */}
-                    <form className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4">
 
                         <input
                             type="text"
@@ -145,9 +161,10 @@ export default function LoginPage() {
                         {/* Button */}
                         <button
                             type="submit"
-                            className="w-full bg-teal-500 hover:bg-teal-600 text-white py-3.5 rounded-full font-semibold text-sm transition"
+                            disabled={loading}
+                            className="w-full bg-teal-500 hover:bg-teal-600 text-white py-3.5 rounded-full font-semibold text-sm transition disabled:opacity-70"
                         >
-                            Create Account
+                            {loading ? "Creating..." : "Create Account"}
                         </button>
 
                     </form>
