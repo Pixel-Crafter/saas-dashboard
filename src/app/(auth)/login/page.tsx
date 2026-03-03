@@ -1,6 +1,17 @@
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useAuthStore } from "@/store/use-auth-store";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+    const router = useRouter()
+    const { login } = useAuthStore()
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        login()
+        router.push("/dashboard")
+    }
+    
     return (
         <main className="min-h-screen flex items-center justify-center relative">
 
