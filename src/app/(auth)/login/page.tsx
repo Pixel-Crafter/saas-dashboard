@@ -1,3 +1,5 @@
+"use client"
+
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useAuthStore } from "@/store/use-auth-store";
 import { useRouter } from "next/navigation";
